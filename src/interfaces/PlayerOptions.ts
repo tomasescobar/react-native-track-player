@@ -72,6 +72,13 @@ export interface PlayerOptions {
    */
   iosCategoryOptions?: IOSCategoryOptions[];
   /**
+   * (iOS only) Tolerance of accuracy in seconds to seek to a specified time through the seek method used in skip and seekTo.
+   * See https://developer.apple.com/documentation/avfoundation/avplayer/1387741-seek#discussion
+   *
+   * @default Infinity
+   */
+  iosSeekTolerance?: number;
+  /**
    * (Android only) The audio content type indicates to the android system how
    * you intend to use audio in your app.
    *

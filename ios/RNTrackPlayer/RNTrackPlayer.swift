@@ -550,8 +550,10 @@ public class RNTrackPlayer: RCTEventEmitter, AudioSessionControllerDelegate {
     public func seekTo(time: Double, resolve: RCTPromiseResolveBlock, reject: RCTPromiseRejectBlock) {
         if (rejectWhenNotInitialized(reject: reject)) { return }
 
-        player.seek(to: time)
-        resolve(NSNull())
+        let tolerance = config["iosSeekTolerance"] as? Double ?? Double.infinity
+        player.seek(to: time, toleranceBefore: tolerance, toleranceAfter: tolerance, completionHandler: { _ in
+            resolve(NSNull())
+        })
     }
 
     @objc(seekBy:resolver:rejecter:)
